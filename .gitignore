@@ -1,9 +1,35 @@
-__pycache__/
-*.pyc
-.venv/
-.py_packages/
-.env
+# Dependencies
 node_modules/
+
+# Environment variables — never commit secrets
+.env
+.env.local
+.env.*.local
+
+# Build output
 dist/
 build/
+
+# Log files
+logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Knex compiled output (when using TypeScript knexfile)
+knexfile.js.map
