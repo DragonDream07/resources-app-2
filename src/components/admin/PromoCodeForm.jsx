@@ -34,7 +34,9 @@ const PromoCodeForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
 
   const validate = () => {
     const errs = {};
-    if (!form.code.trim()) errs.code = 'Promo code is required.';
+    if (!form.code.trim()) {
+      errs.code = 'Promo code is required.';
+    }
     if (!form.value || isNaN(Number(form.value)) || Number(form.value) <= 0) {
       errs.value = 'A positive discount value is required.';
     }
@@ -74,8 +76,9 @@ const PromoCodeForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Promo Code *</label>
+          <label htmlFor="promo_code" className="block text-sm font-medium text-gray-700 mb-1">Promo Code *</label>
           <input
+            id="promo_code"
             type="text"
             name="code"
             value={form.code}
@@ -86,8 +89,9 @@ const PromoCodeForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Discount Type *</label>
+          <label htmlFor="promo_type" className="block text-sm font-medium text-gray-700 mb-1">Discount Type *</label>
           <select
+            id="promo_type"
             name="type"
             value={form.type}
             onChange={handleChange}
@@ -100,10 +104,11 @@ const PromoCodeForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="promo_value" className="block text-sm font-medium text-gray-700 mb-1">
             {form.type === 'percentage' ? 'Percentage (%) *' : 'Flat Amount *'}
           </label>
           <input
+            id="promo_value"
             type="number"
             name="value"
             min="0"
@@ -116,8 +121,9 @@ const PromoCodeForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
+          <label htmlFor="promo_expiry_date" className="block text-sm font-medium text-gray-700 mb-1">Expiry Date</label>
           <input
+            id="promo_expiry_date"
             type="date"
             name="expiry_date"
             value={form.expiry_date}
@@ -128,8 +134,9 @@ const PromoCodeForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Minimum Order Value</label>
+          <label htmlFor="promo_min_order_value" className="block text-sm font-medium text-gray-700 mb-1">Minimum Order Value</label>
           <input
+            id="promo_min_order_value"
             type="number"
             name="min_order_value"
             min="0"
@@ -142,8 +149,9 @@ const PromoCodeForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Max Uses</label>
+          <label htmlFor="promo_max_uses" className="block text-sm font-medium text-gray-700 mb-1">Max Uses</label>
           <input
+            id="promo_max_uses"
             type="number"
             name="max_uses"
             min="1"

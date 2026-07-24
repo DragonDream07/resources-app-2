@@ -70,8 +70,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
         <h3 className="text-lg font-semibold text-gray-800">Basic Information</h3>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Product Name *</label>
+          <label htmlFor="product_name" className="block text-sm font-medium text-gray-700 mb-1">Product Name *</label>
           <input
+            id="product_name"
             type="text"
             name="name"
             value={form.name}
@@ -82,8 +83,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <label htmlFor="product_description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
           <textarea
+            id="product_description"
             name="description"
             value={form.description}
             onChange={handleChange}
@@ -94,8 +96,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
+            <label htmlFor="product_category_id" className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
             <select
+              id="product_category_id"
               name="category_id"
               value={form.category_id}
               onChange={handleChange}
@@ -110,8 +113,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Brand *</label>
+            <label htmlFor="product_brand_id" className="block text-sm font-medium text-gray-700 mb-1">Brand *</label>
             <select
+              id="product_brand_id"
               name="brand_id"
               value={form.brand_id}
               onChange={handleChange}
@@ -170,8 +174,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
               <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1">SKU Code *</label>
+                <label htmlFor={`sku_${index}_sku_code`} className="block text-xs font-medium text-gray-600 mb-1">SKU Code *</label>
                 <input
+                  id={`sku_${index}_sku_code`}
                   type="text"
                   value={sku.sku_code}
                   onChange={(e) => handleSkuChange(index, 'sku_code', e.target.value)}
@@ -181,8 +186,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1">Price *</label>
+                <label htmlFor={`sku_${index}_price`} className="block text-xs font-medium text-gray-600 mb-1">Price *</label>
                 <input
+                  id={`sku_${index}_price`}
                   type="number"
                   min="0"
                   step="0.01"
@@ -194,8 +200,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1">Stock *</label>
+                <label htmlFor={`sku_${index}_stock`} className="block text-xs font-medium text-gray-600 mb-1">Stock *</label>
                 <input
+                  id={`sku_${index}_stock`}
                   type="number"
                   min="0"
                   value={sku.stock}
@@ -206,8 +213,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1">Size</label>
+                <label htmlFor={`sku_${index}_size`} className="block text-xs font-medium text-gray-600 mb-1">Size</label>
                 <input
+                  id={`sku_${index}_size`}
                   type="text"
                   value={sku.size}
                   onChange={(e) => handleSkuChange(index, 'size', e.target.value)}
@@ -216,8 +224,9 @@ const ProductForm = ({ initialValues, categories, brands, onSubmit, loading, sub
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-600 mb-1">Color</label>
+                <label htmlFor={`sku_${index}_color`} className="block text-xs font-medium text-gray-600 mb-1">Color</label>
                 <input
+                  id={`sku_${index}_color`}
                   type="text"
                   value={sku.color}
                   onChange={(e) => handleSkuChange(index, 'color', e.target.value)}

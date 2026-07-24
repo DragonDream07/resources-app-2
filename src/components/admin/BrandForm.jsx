@@ -46,8 +46,9 @@ const BrandForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Brand Name *</label>
+        <label htmlFor="brand_name" className="block text-sm font-medium text-gray-700 mb-1">Brand Name *</label>
         <input
+          id="brand_name"
           type="text"
           name="name"
           value={form.name}
@@ -58,8 +59,9 @@ const BrandForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+        <label htmlFor="brand_description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
         <textarea
+          id="brand_description"
           name="description"
           value={form.description}
           onChange={handleChange}
@@ -69,8 +71,9 @@ const BrandForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Website</label>
+        <label htmlFor="brand_website" className="block text-sm font-medium text-gray-700 mb-1">Website</label>
         <input
+          id="brand_website"
           type="url"
           name="website"
           value={form.website}

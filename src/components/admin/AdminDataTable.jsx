@@ -1,6 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
+const DEFAULT_EMPTY_MESSAGE = 'No records found.';
+const DEFAULT_EMPTY_CELL = '—';
+
 const SortIcon = ({ direction }) => {
   if (!direction) return <span className="ml-1 text-gray-300">⇅</span>;
   return <span className="ml-1">{direction === 'asc' ? '↑' : '↓'}</span>;
@@ -106,7 +109,7 @@ const AdminDataTable = ({
             ) : pagedData.length === 0 ? (
               <tr>
                 <td colSpan={columns.length} className="px-4 py-10 text-center text-gray-400">
-                  {emptyMessage ?? 'No records found.'}
+                  {emptyMessage ?? DEFAULT_EMPTY_MESSAGE}
                 </td>
               </tr>
             ) : (
@@ -114,7 +117,7 @@ const AdminDataTable = ({
                 <tr key={getKey(row, index)} className="hover:bg-gray-50 transition-colors">
                   {columns.map((col) => (
                     <td key={col.key} className={`px-4 py-3 text-gray-800 ${col.cellClassName ?? ''}`}>
-                      {col.render ? col.render(row[col.key], row) : (row[col.key] ?? '—')}
+                      {col.render ? col.render(row[col.key], row) : (row[col.key] ?? DEFAULT_EMPTY_CELL)}
                     </td>
                   ))}
                 </tr>

@@ -50,8 +50,9 @@ const CategoryForm = ({ initialValues, categories, onSubmit, loading, submitLabe
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Category Name *</label>
+        <label htmlFor="cat_name" className="block text-sm font-medium text-gray-700 mb-1">Category Name *</label>
         <input
+          id="cat_name"
           type="text"
           name="name"
           value={form.name}
@@ -62,8 +63,9 @@ const CategoryForm = ({ initialValues, categories, onSubmit, loading, submitLabe
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+        <label htmlFor="cat_description" className="block text-sm font-medium text-gray-700 mb-1">Description</label>
         <textarea
+          id="cat_description"
           name="description"
           value={form.description}
           onChange={handleChange}
@@ -73,8 +75,9 @@ const CategoryForm = ({ initialValues, categories, onSubmit, loading, submitLabe
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Parent Category</label>
+        <label htmlFor="cat_parent_id" className="block text-sm font-medium text-gray-700 mb-1">Parent Category</label>
         <select
+          id="cat_parent_id"
           name="parent_id"
           value={form.parent_id ?? ''}
           onChange={handleChange}
