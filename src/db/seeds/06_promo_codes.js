@@ -1,0 +1,98 @@
+'use strict';
+
+/**
+ * Sample promo codes
+ *
+ * Discount types: flat | percent
+ */
+exports.seed = async function (knex) {
+  await knex('promo_codes').del();
+
+  await knex('promo_codes').insert([
+    {
+      id: '00000000-0000-0000-0005-000000000001',
+      code: 'WELCOME10',
+      description: '10% off on your first order',
+      discount_type: 'percent',
+      discount_value: 10.00,
+      min_order_value: 500.00,
+      max_discount_amount: 500.00,
+      usage_limit: 1000,
+      usage_count: 0,
+      per_user_limit: 1,
+      is_active: true,
+      valid_from: new Date('2024-01-01T00:00:00.000Z'),
+      valid_until: new Date('2025-12-31T23:59:59.000Z'),
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+    },
+    {
+      id: '00000000-0000-0000-0005-000000000002',
+      code: 'FLAT200',
+      description: 'Flat ₹200 off on orders above ₹1000',
+      discount_type: 'flat',
+      discount_value: 200.00,
+      min_order_value: 1000.00,
+      max_discount_amount: 200.00,
+      usage_limit: 500,
+      usage_count: 0,
+      per_user_limit: 2,
+      is_active: true,
+      valid_from: new Date('2024-01-01T00:00:00.000Z'),
+      valid_until: new Date('2025-12-31T23:59:59.000Z'),
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+    },
+    {
+      id: '00000000-0000-0000-0005-000000000003',
+      code: 'TECH15',
+      description: '15% off on electronics — up to ₹2000',
+      discount_type: 'percent',
+      discount_value: 15.00,
+      min_order_value: 2000.00,
+      max_discount_amount: 2000.00,
+      usage_limit: 300,
+      usage_count: 0,
+      per_user_limit: 3,
+      is_active: true,
+      valid_from: new Date('2024-01-01T00:00:00.000Z'),
+      valid_until: new Date('2025-06-30T23:59:59.000Z'),
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+    },
+    {
+      id: '00000000-0000-0000-0005-000000000004',
+      code: 'FREESHIP',
+      description: 'Free shipping on any order',
+      discount_type: 'flat',
+      discount_value: 99.00,
+      min_order_value: 0.00,
+      max_discount_amount: 99.00,
+      usage_limit: 2000,
+      usage_count: 0,
+      per_user_limit: 5,
+      is_active: true,
+      valid_from: new Date('2024-01-01T00:00:00.000Z'),
+      valid_until: new Date('2025-12-31T23:59:59.000Z'),
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+    },
+    {
+      id: '00000000-0000-0000-0005-000000000005',
+      code: 'EXPIRED50',
+      description: 'Expired test promo — 50% off',
+      discount_type: 'percent',
+      discount_value: 50.00,
+      min_order_value: 100.00,
+      max_discount_amount: 1000.00,
+      usage_limit: 100,
+      usage_count: 100,
+      per_user_limit: 1,
+      is_active: false,
+      valid_from: new Date('2023-01-01T00:00:00.000Z'),
+      valid_until: new Date('2023-12-31T23:59:59.000Z'),
+      created_at: knex.fn.now(),
+      updated_at: knex.fn.now(),
+    },
+  ]);
+};
