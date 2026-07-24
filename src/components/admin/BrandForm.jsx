@@ -1,0 +1,120 @@
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
+const BrandForm = ({ initialValues, onSubmit, loading, submitLabel }) => {
+  const [form, setForm] = useState({
+    name: '',
+    description: '',
+    website: '',
+    is_active: true,
+    ...initialValues,
+  });
+
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    if (initialValues) {
+      setForm((prev) => ({ ...prev, ...initialValues }));
+    }
+  }, [initialValues]);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : value }));
+    setErrors((prev) => ({ ...prev, [name]: undefined }));
+  };
+
+  const validate = () => {
+    const errs = {};
+    if (!form.name.trim()) errs.name = 'Brand name is required.';
+    if (form.website && !/^https?:\/\/.+/.test(form.website)) {
+      errs.website = 'Website must be a valid URL starting with http:// or https://';
+    }
+    return errs;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+    onSubmit(form);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} noValidate className="space-y-5">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Brand Name *</label>
+        <input
+          type="text"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 ${errors.name ? 'border-red-400' : 'border-gray-300'}`}
+        />
+        {errors.name && <p className="text-xs text-red-600 mt-1">{errors.name}</p>}
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+        <textarea
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          rows={3}
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Website</label>
+        <input
+          type="url"
+          name="website"
+          value={form.website}
+          onChange={handleChange}
+          placeholder="https://example.com"
+          className={`w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 ${errors.website ? 'border-red-400' : 'border-gray-300'}`}
+        />
+        {errors.website && <p className="text-xs text-red-600 mt-1">{errors.website}</p>}
+      </div>
+
+      <div className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          id="brand_is_active"
+          name="is_active"
+          checked={form.is_active}
+          onChange={handleChange}
+          className="w-4 h-4 text-indigo-600 rounded border-gray-300"
+        />
+        <label htmlFor="brand_is_active" className="text-sm font-medium text-gray-700">Active</label>
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          disabled={loading}
+          className="px-6 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          {loading ? 'Saving…' : (submitLabel ?? 'Save Brand')}
+        </button>
+      </div>
+    </form>
+  );
+};
+
+BrandForm.propTypes = {
+  initialValues: PropTypes.object,
+  onSubmit: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  submitLabel: PropTypes.string,
+};
+
+BrandForm.defaultProps = {
+  loading: false,
+};
+
+export default BrandForm;
